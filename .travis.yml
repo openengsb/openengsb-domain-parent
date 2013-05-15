@@ -1,5 +1,7 @@
 ---
 language: java
+before_install:
+  - echo "<settings></settings>" > ~/.m2/settings.xml
 install: mvn validate
 script: mvn install -Pitests,checkstyle,licenseCheck
 notifications:
