@@ -1,0 +1,25 @@
+---
+language: java
+install: mvn validate
+script: mvn install -Pitests,checkstyle,licenseCheck
+notifications:
+  email:
+    recipients:
+    - openengsb-notification@googlegroups.com
+    on_success:
+    - change
+    on_failure:
+    - always
+env:
+  global:
+  - SONATYPE_USERNAME=pieber
+  - secure: |-
+      F3w/NiClS5pnxwl/JIMkiCQelwxccLWQCOOEgtw5J0RORUuDJxHA+aU4VyEk
+      VbQ7bh9qmzJdiAUOHLPryUwhOiHl10el9WWB1uoCz9pwm09QdYrYgCL+pWqF
+      3H+tDdIvnw2b/3XWe4x+bF2rGml9HHypiIVPLZdVwmjwxSIYiEk=
+after_success:
+- wget https://raw.github.com/openengsb/openengsb-root/master/etc/travis/addServer.py
+- wget https://raw.github.com/openengsb/openengsb-root/master/etc/travis/deploy
+- python addServer.py
+- chmod -R 777 deploy
+- ./deploy
