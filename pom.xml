@@ -47,35 +47,41 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/openengsb/openengsb-framework.git</connection>
-    <developerConnection>scm:git:git@github.com:openengsb/openengsb-framework.git</developerConnection>
-    <url>http://github.com/openengsb/openengsb-framework</url>
+    <connection>scm:git:git://github.com/openengsb/openengsb-domain-parent.git</connection>
+    <developerConnection>scm:git:git@github.com:openengsb/openengsb-domain-parent.git</developerConnection>
+    <url>http://github.com/openengsb/openengsb-domain-parent</url>
   </scm>
-
-  <properties>
-    <manual.builder.resources.version>1.0.0</manual.builder.resources.version>
-    <assembly.builder.resources.version>1.0.1</assembly.builder.resources.version>
-  </properties>
 
   <build>
     <resources>
       <resource>
-        <directory>src/manual</directory>
+        <directory>${project.basedir}/src/main/resources</directory>
         <filtering>true</filtering>
-      </resource>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/src/main/filtered-resources</directory>
-        <filtering>true</filtering>
-        <includes>
-          <include>**/*</include>
-        </includes>
       </resource>
     </resources>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/target/features</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/src/main/features</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
@@ -83,75 +89,6 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <versionRange>[2.4,)</versionRange>
-                    <goals>
-                      <goal>unpack</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-        <!-- Documentation -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>unpack</id>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>unpack</goal>
-              </goals>
-              <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>org.openengsb</groupId>
-                    <artifactId>openengsb-assembly-builder-resources</artifactId>
-                    <version>${assembly.builder.resources.version}</version>
-                    <outputDirectory>${project.build.directory}/assembly-resources</outputDirectory>
-                  </artifactItem>
-                </artifactItems>
-                <overWriteReleases>false</overWriteReleases>
-                <overWriteSnapshots>true</overWriteSnapshots>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <configuration>
-            <descriptors>
-              <descriptor>${project.basedir}/target/assembly-resources/src.xml</descriptor>
-            </descriptors>
-          </configuration>
-          <executions>
-            <execution>
-              <id>make-src-assembly</id>
-              <phase>package</phase>
-              <goals>
-                <goal>single</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
         <plugin>
           <groupId>org.apache.cxf</groupId>
           <artifactId>cxf-java2ws-plugin</artifactId>
@@ -201,7 +138,7 @@
               <configuration>
                 <artifacts>
                   <artifact>
-                    <file>target/classes/features.xml</file>
+                    <file>target/features/features.xml</file>
                     <type>xml</type>
                     <classifier>features</classifier>
                   </artifact>
