@@ -1,0 +1,13 @@
+openengsb-domain-parent v3.0.0 2014-05-21
+--------------------------------------------
+
+### Details
+** Bug
+    * [OPENENGSB-3387] - Domain parent doesn't include any direct configuration for maven-bundle-plugin
+
+** Improvement
+    * [OPENENGSB-3288] - extract domain-parent to separate repository
+
+** Library Upgrade
+    * [OPENENGSB-3399] - upgrade assembly-builder-resources to 1.0.1
+    * [OPENENGSB-3727] - upgrade domain parent to root 35-SNAPSHOT
