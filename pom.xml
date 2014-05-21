@@ -28,7 +28,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openengsb.domain</groupId>
   <artifactId>openengsb-domain-parent</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
 
   <name>OpenEngSB :: Domain :: Parent</name>
 
@@ -49,7 +49,7 @@
     <connection>scm:git:git://github.com/openengsb/openengsb-domain-parent.git</connection>
     <developerConnection>scm:git:git@github.com:openengsb/openengsb-domain-parent.git</developerConnection>
     <url>http://github.com/openengsb/openengsb-domain-parent</url>
-    <tag>v3.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
