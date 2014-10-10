@@ -15,7 +15,10 @@
 # limitations under the License.
 #
 
+*.classpath
+*.project
+*.settings
+*~
 *.iml
 *.idea
-.project
-.settings/*
+target/*
