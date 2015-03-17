@@ -1,3 +1,12 @@
+openengsb-domain-parent v3.1.0 2015-03-17
+--------------------------------------------
+
+This release uses to the openengsb-root-37.
+
+### Details
+** Library Upgrade
+    * [OPENENGSB-3869] - Upgrade openengsb-domain-parent to openengsb-root 37
+
 openengsb-domain-parent v3.0.1 2014-10-10
 --------------------------------------------
 
